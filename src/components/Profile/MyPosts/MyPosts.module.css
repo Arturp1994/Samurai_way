@@ -1,0 +1,8 @@
+.posts {
+    grid-area: c;
+    background-color:greenyellow;
+}
+
+.item {
+    color: #312a2a;
+}
