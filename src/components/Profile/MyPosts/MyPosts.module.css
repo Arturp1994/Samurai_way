@@ -1,8 +1,13 @@
 .posts {
     grid-area: c;
-    background-color:greenyellow;
+    background-color:gold;
+    margin-top: 10px;
 }
 
 .item {
     color: #312a2a;
+}
+
+.postsBlock{
+    padding: 10px;
 }
