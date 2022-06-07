@@ -5,16 +5,10 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import Dialogs from "./components/Dialogs/Dialogs";
+import state from './redux/state'
 
 
-
-type AppProps={
-    posts: Array<{id:number, message: string, likesCount:number}>
-    dialogs: Array<{id: number, name: string}>
-    messages: Array<{id: number, message: string}>
-}
-
-function App(props: AppProps) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -23,8 +17,8 @@ function App(props: AppProps) {
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/dialogs'} render={()=><Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path={'/profile'} render={()=><Profile posts={props.posts}/>}/>
+                    <Route path={'/dialogs'} render={()=><Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>}/>
+                    <Route path={'/profile'} render={()=><Profile posts={state.profilePage.posts}/>}/>
 
                 </div>
 

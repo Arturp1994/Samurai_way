@@ -9,10 +9,6 @@ export type MyPostsProps={
 
 const MyPosts = (props: MyPostsProps) => {
 
-    // let posts = [
-    //     {id: 1, message: 'Hi, how are you?', likesCount: 23},
-    //     {id: 2, message: 'It is my first post', likesCount: 5},
-    // ]
 
 let posptsElement = props.posts.map(p=> <Posts message = {p.message} likesCount={p.likesCount}/>)
 
