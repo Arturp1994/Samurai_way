@@ -1,3 +1,6 @@
+import {renderEntireTree} from "../render";
+
+
 type MessageType={
     id: number
     message: string
@@ -56,5 +59,16 @@ let state: RoteStateType = {
     },
     sidebar: {}
 }
+
+export let addPost =(postMessage:string)=>{
+    let newPost ={
+        id: new Date().getTime(),
+        message: postMessage,
+        likesCount: 0,
+    }
+    state.profilePage.posts.push(newPost)
+    renderEntireTree(state)
+}
+
 
 export default state
