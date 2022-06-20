@@ -1,9 +1,19 @@
-import state, {RoteStateType} from "./redux/state";
-import {renderEntireTree} from "./render";
+import store from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
+import React from "react";
 
 
-renderEntireTree(state)
+let renderEntireTree = ()=>{
 
+    ReactDOM.render(
+        <App store={store}/>,
+        document.getElementById('root')
+    );
+}
+
+store.subscribe(renderEntireTree)
+renderEntireTree()
 
 
 
