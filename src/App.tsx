@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {StoreType} from "./redux/state";
+import store, {StoreType} from "./redux/state";
 
 
 type PropsType={
@@ -20,8 +20,18 @@ const state = props.store.getState()
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/dialogs'} render={()=><Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>}/>
-                    <Route path={'/profile'} render={()=><Profile changeNewText={props.store.changeNewText.bind(props.store)} message={state.profilePage.newPostText} posts={state.profilePage.posts} addPost={props.store.addPost.bind(props.store)}/>}/>
+                    <Route path={'/dialogs'} render={()=>
+                        <Dialogs
+                            dialogs={state.dialogsPage.dialogs}
+                            messages={state.dialogsPage.messages}/>}/>
+                    <Route path={'/profile'} render={()=>
+                        <Profile
+                        changeNewText={props.store.changeNewText.bind(props.store)}//можно удалить
+                        message={state.profilePage.newPostText}
+                        posts={state.profilePage.posts}
+                        addPost={props.store.addPost.bind(props.store)}//можно удалить
+                        dispatch={props.store.dispatch.bind(props.store)}/>}
+                    />
 
                 </div>
 
