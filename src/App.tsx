@@ -23,7 +23,10 @@ const state = props.store.getState()
                     <Route path={'/dialogs'} render={()=>
                         <Dialogs
                             dialogs={state.dialogsPage.dialogs}
-                            messages={state.dialogsPage.messages}/>}/>
+                            messages={state.dialogsPage.messages}
+                            dispatch={props.store.dispatch.bind(props.store)}
+                            newMessageBody={props.store._state.dialogsPage.newMessageBody}
+                        />}/>
                     <Route path={'/profile'} render={()=>
                         <Profile
                         changeNewText={props.store.changeNewText.bind(props.store)}//можно удалить

@@ -34,6 +34,7 @@ let store: StoreType = {
                 {id: 4, name: 'Egor'},
                 {id: 5, name: 'Denis'},
             ],
+            newMessageBody: ""
         },
         sidebar: {}
     },
@@ -59,6 +60,7 @@ let store: StoreType = {
     getState() {
         return this._state
     },
+     
     dispatch(action) {
         if (action.type === 'ADD-POST') {
             let newPost = {
@@ -71,16 +73,52 @@ let store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this.renderEntireTree()
-        }
+        } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this.renderEntireTree()
+        }else if (action.type === 'SEND_MESSAGE') {
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = "";
+            this._state.dialogsPage.messages.push({id: 5, message: body});
+            this.renderEntireTree()
+    }}
+}
+
+export const addPostActionCreator = (newPostText: string):AddPostActionType =>{
+    return {
+        type: "ADD-POST",
+        newPostText: newPostText
+    }
+}
+
+export const UpdateNewPostTextActionCreator = (text: string):ChangeNewTextActionType =>{
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    }
+}
+
+export const sendMessageCreator = (body: string):SendMessagePostActionType =>{
+    return {
+        type: 'SEND_MESSAGE',
+        body: body
+    }
+}
+
+export const updateNewMessageCreator = (body: string):UpdateNewMessagePostActionType =>{
+    return {
+        type: 'UPDATE_NEW_MESSAGE_BODY',
+        body: body
     }
 }
 
 
-type MessageType = {
+
+export type MessageType = {
     id: number
     message: string
 }
-type DialogType = {
+export  type DialogType = {
     id: number
     name: string
 }
@@ -94,9 +132,10 @@ type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
+    newMessageBody: string
 
 }
 type SidebarType = {}
@@ -117,7 +156,14 @@ type ChangeNewTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-
-export type ActionsType = AddPostActionType | ChangeNewTextActionType
+type UpdateNewMessagePostActionType = {
+    type: 'UPDATE_NEW_MESSAGE_BODY'
+    body: string
+}
+type SendMessagePostActionType = {
+    type: 'SEND_MESSAGE'
+    body: string
+}
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType
 
 export default store
