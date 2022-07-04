@@ -9,7 +9,7 @@ import {
     MessageType,
     sendMessageCreator,
     updateNewMessageCreator
-} from "../../redux/state";
+} from "../../redux/store";
 
 export type dialogsPtopsType= {
     messages: Array<MessageType>

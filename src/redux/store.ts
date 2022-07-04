@@ -1,3 +1,7 @@
+import {profileReducer} from "./Profile-reducer";
+import {dialogsReducer} from "./Dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+
 export type StoreType = {
     _state: RoteStateType
     changeNewText: (newText: string) => void
@@ -62,26 +66,14 @@ let store: StoreType = {
     },
      
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: new Date().getTime(),
-                message: action.newPostText,
-                likesCount: 0,
-            }
-            this._state.profilePage.posts.push(newPost)
-            this.renderEntireTree()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this.renderEntireTree()
-        } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
-            this._state.dialogsPage.newMessageBody = action.body;
-            this.renderEntireTree()
-        }else if (action.type === 'SEND_MESSAGE') {
-            let body = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = "";
-            this._state.dialogsPage.messages.push({id: 5, message: body});
-            this.renderEntireTree()
-    }}
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this.renderEntireTree();
+
+    }
 }
 
 export const addPostActionCreator = (newPostText: string):AddPostActionType =>{
@@ -122,13 +114,13 @@ export  type DialogType = {
     id: number
     name: string
 }
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
@@ -138,7 +130,7 @@ export type DialogsPageType = {
     newMessageBody: string
 
 }
-type SidebarType = {}
+export type SidebarType = {}
 
 export type RoteStateType = {
     profilePage: ProfilePageType

@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Posts from "./Post/Posts";
-import {ActionsType, addPostActionCreator, UpdateNewPostTextActionCreator} from "../../../redux/state";
+import {ActionsType, addPostActionCreator, UpdateNewPostTextActionCreator} from "../../../redux/store";
 
 export type MyPostsProps = {
     posts: Array<{ id: number, message: string, likesCount: number }>
