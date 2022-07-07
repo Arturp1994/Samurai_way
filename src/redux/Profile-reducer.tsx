@@ -22,11 +22,11 @@ export const profileReducer = (state = initialState, action: ActionsType):initia
                 likesCount: 0,
             }
             state.posts.push(newPost)
-            break;
+            return state;
         case 'UPDATE-NEW-POST-TEXT':
             state.newPostText = action.newText;
-            break;
+            return state;
+        default: return state;
     }
 
-    return state
 }
