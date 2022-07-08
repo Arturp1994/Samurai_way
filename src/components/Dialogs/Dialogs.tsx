@@ -8,8 +8,6 @@ import {
 } from "../../redux/store";
 
 
-
-
 type DialogsPropsType = {
     updateNewMessage: (body: string)=>void
     sendMessage: ()=>void
