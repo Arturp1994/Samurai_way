@@ -58,7 +58,7 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType=>{
             dispatch(updateNewMessageCreator(body))
         },
         sendMessage: ()=>{
-            dispatch(sendMessageCreator(' '))
+            dispatch(sendMessageCreator())
         }
     }
 }

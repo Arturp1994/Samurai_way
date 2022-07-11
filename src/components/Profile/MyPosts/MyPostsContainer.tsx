@@ -38,35 +38,35 @@ type MapStateToPropsType = {
     posts:Array<PostType>
     message: string
 }
-type mapDispatchToProps = {
+type mapDispatchToPropsType = {
     changeNewText: (text: string)=> void
     addPost: ()=>void
 }
-export type MyPostsProrsType = MapStateToPropsType & mapDispatchToProps
+export type MyPostsProrsType = MapStateToPropsType & mapDispatchToPropsType
 
 
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType=>{
-    return{
+    return {
         posts: state.profilePage.posts,
         message: state.profilePage.newPostText,
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps=>{
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType=>{
     return{
         changeNewText: (text: string)=>{
             let action = UpdateNewPostTextActionCreator(text);
             dispatch(action)
         },
         addPost: () => {
-            dispatch(addPostActionCreator( ' '))
+            dispatch(addPostActionCreator())
             dispatch(UpdateNewPostTextActionCreator(""))
 
         }
     }
 }
 
-const MyPostsContainer = connect (mapStateToProps, mapDispatchToProps) (MyPosts)
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts)
 
 
 export default MyPostsContainer

@@ -76,10 +76,9 @@ let store: StoreType = {
     }
 }
 
-export const addPostActionCreator = (newPostText: string):AddPostActionType =>{
+export const addPostActionCreator = ():AddPostActionType =>{
     return {
-        type: "ADD-POST",
-        newPostText: newPostText
+        type: "ADD-POST"
     }
 }
 
@@ -90,10 +89,9 @@ export const UpdateNewPostTextActionCreator = (text: string):ChangeNewTextAction
     }
 }
 
-export const sendMessageCreator = (body: string):SendMessagePostActionType =>{
+export const sendMessageCreator = ():SendMessagePostActionType =>{
     return {
         type: 'SEND_MESSAGE',
-        body: body
     }
 }
 
@@ -141,7 +139,6 @@ export type RoteStateType = {
 
 type AddPostActionType = {
     type: 'ADD-POST'
-    newPostText: string
 }
 
 type ChangeNewTextActionType = {
@@ -154,7 +151,6 @@ type UpdateNewMessagePostActionType = {
 }
 type SendMessagePostActionType = {
     type: 'SEND_MESSAGE'
-    body: string
 }
 export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType
 
