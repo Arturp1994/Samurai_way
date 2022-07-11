@@ -6,13 +6,14 @@ import {
     DialogType,
     MessageType,
 } from "../../redux/store";
+import {DialogsPropsType} from "./DialogsContainer";
 
 
-type DialogsPropsType = {
-    updateNewMessage: (body: string)=>void
-    sendMessage: ()=>void
-    dialogsPage: { messages: MessageType[]; dialogs: DialogType[]; newMessageBody: string; }
-}
+// type DialogsPropsType = {
+//     updateNewMessage: (body: string)=>void
+//     sendMessage: ()=>void
+//     dialogsPage: { messages: MessageType[]; dialogs: DialogType[]; newMessageBody: string; }
+// }
 
 const Dialogs = (props: DialogsPropsType) => {
 

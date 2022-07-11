@@ -1,23 +1,25 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Posts from "./Post/Posts";
+import {MyPostsProrsType} from "./MyPostsContainer";
 
-export type MyPostsProps = {
-    posts: Array<{ id: number, message: string, likesCount: number }>
-    addPost: (postMessage: string) => void
-    message: string
-    changeNewText: (newText: string) => void
+// export type MyPostsProps = {
+//     posts: Array<{ id: number, message: string, likesCount: number }>
+//     addPost: (postMessage: string) => void
+//     message: string
+//     changeNewText: (newText: string) => void
+//
+// }
 
-}
-
-const MyPosts = (props: MyPostsProps) => {
+const MyPosts = (props: MyPostsProrsType) => {
 
 
     let posptsElement = props.posts.map(p => <Posts message={p.message} likesCount={p.likesCount}/>)
 
 
     let onAddPost = () => {
-        props.addPost(props.message)
+        // props.addPost(props.message)
+        props.addPost()
 
     }
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
