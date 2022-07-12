@@ -1,4 +1,4 @@
-import {ActionsType, PostType, ProfilePageType} from "./store";
+import {ActionsType, PostType} from "./store";
 
 
 const initialState= {
@@ -21,16 +21,17 @@ export const profileReducer = (state = initialState, action: ActionsType):initia
                 message: state.newPostText,
                 likesCount: 0,
             };
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost)
-            return stateCopy;
-        }
+            return {
+                ...state,
+                posts: [...state.posts, newPost]}
+            };
+
+
         case 'UPDATE-NEW-POST-TEXT': {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
-        }
+            return {...state,
+                newPostText: action.newText}
+            }
+
         default: return state;
     }
 

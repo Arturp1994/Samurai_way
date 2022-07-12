@@ -1,6 +1,7 @@
 import {profileReducer} from "./Profile-reducer";
 import {dialogsReducer} from "./Dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
+import {followACType, onfollowACType, setUsersACType} from "./Users-reducer";
 
 export type StoreType = {
     _state: RoteStateType
@@ -152,6 +153,6 @@ type UpdateNewMessagePostActionType = {
 type SendMessagePostActionType = {
     type: 'SEND_MESSAGE'
 }
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType | followACType | onfollowACType | setUsersACType
 
 export default store
