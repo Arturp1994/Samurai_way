@@ -2,17 +2,18 @@ import {ActionsType} from "./store";
 
 export type UsersType = {
     id: number
-    fullName: string
-    photoURL: string
-    followed: boolean
+    name: string
     status: string
-    location: LocationType
+    followed: boolean
+    uniqueUrlName: string
+    photos: LocationType
 }
 
 type LocationType = {
-    city: string
-    country: string
+    small: string
+    large: string
 }
+
 
 const initialState: initialStateType = {
     users: []
