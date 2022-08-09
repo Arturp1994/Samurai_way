@@ -8,6 +8,7 @@ import {
     setTotalUsersCountACType,
     setUsersACType, toggleIsFetchingAC, toggleIsFetchingACACType
 } from "./Users-reducer";
+import {SetUserDataType} from "./auth-reducer";
 
 export type StoreType = {
     _state: RoteStateType
@@ -159,6 +160,6 @@ type UpdateNewMessagePostActionType = {
 type SendMessagePostActionType = {
     type: 'SEND_MESSAGE'
 }
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType | followACType | onfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType | toggleIsFetchingACACType | setUsersProfileACType
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType | followACType | onfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType | toggleIsFetchingACACType | setUsersProfileACType | SetUserDataType
 
 // export default store
