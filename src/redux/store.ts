@@ -6,7 +6,7 @@ import {
     onfollowACType,
     setCurrentPageACType,
     setTotalUsersCountACType,
-    setUsersACType, toggleIsFetchingAC, toggleIsFetchingACACType
+    setUsersACType, toggleIsFetchingAC, toggleIsFetchingACACType, toggleIsFollovingProgressACType
 } from "./Users-reducer";
 import {SetUserDataType} from "./auth-reducer";
 
@@ -160,6 +160,6 @@ type UpdateNewMessagePostActionType = {
 type SendMessagePostActionType = {
     type: 'SEND_MESSAGE'
 }
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType | followACType | onfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType | toggleIsFetchingACACType | setUsersProfileACType | SetUserDataType
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType | followACType | onfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType | toggleIsFetchingACACType | setUsersProfileACType | SetUserDataType | toggleIsFollovingProgressACType
 
 // export default store

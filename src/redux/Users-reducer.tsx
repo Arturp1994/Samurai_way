@@ -19,7 +19,8 @@ const initialState: initialStateType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: []
 }
 
  type initialStateType = {
@@ -28,6 +29,7 @@ const initialState: initialStateType = {
      totalUsersCount: number
      currentPage:number
      isFetching: boolean
+     followingInProgress: Array<number>
 
  }
 
@@ -68,6 +70,13 @@ export const usersReducer = (state = initialState, action: ActionsType): initial
         case 'TOGGLE_IS_FETCHING': {
             return {...state, isFetching: action.isFetching}
         }
+        case 'TOGGLE_IS_FOLLOWING_PROGRESS': {
+            return {...state,
+                followingInProgress: action.isFetching
+                    ?  [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id=>id!=action.userId)
+            }
+        }
         default:
             return state
     }
@@ -100,6 +109,12 @@ export type toggleIsFetchingACACType = {
     isFetching: boolean
 }
 
+export type toggleIsFollovingProgressACType = {
+    type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
+    isFetching: boolean
+    userId:number
+}
+
 
 export const followAC = (userID: number): followACType => ({type: 'FOLLOW', userID})
 export const onfollowAC = (userID: number): onfollowACType => ({type: 'UNFOLLOW', userID})
@@ -107,3 +122,4 @@ export const setUsersAC = (users:Array<UsersType>): setUsersACType => ({type: 'S
 export const setCurrentPageAC = (currentPage:number): setCurrentPageACType => ({type: 'SET_CURRENT_PAGE', currentPage})
 export const setTotalUsersCountAC = (totalUsersCount:number): setTotalUsersCountACType => ({type: 'SET_TOTAL_USERS_COUNT', count:totalUsersCount})
 export const toggleIsFetchingAC = (isFetching:boolean): toggleIsFetchingACACType => ({type: 'TOGGLE_IS_FETCHING', isFetching})
+export const toggleIsFollowingProgressAC = (isFetching:boolean, userId:number): toggleIsFollovingProgressACType => ({type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId})
