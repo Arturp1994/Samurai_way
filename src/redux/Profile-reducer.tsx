@@ -1,4 +1,6 @@
 import {ActionsType, PostType} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 
 const initialState = {
@@ -47,24 +49,18 @@ export const profileReducer = (state = initialState, action: ActionsType): initi
                 posts: [...state.posts, newPost]
             }
         }
-            ;
-
-
         case 'UPDATE-NEW-POST-TEXT': {
             return {
                 ...state,
                 newPostText: action.newText
             }
         }
-            ;
         case 'SET_USER_PROFILE': {
             return {
                 ...state,
                 profile: action.profile
             }
         }
-            ;
-
         default:
             return state;
     }
@@ -102,3 +98,9 @@ type PhotosType = {
     large: string
 }
 export const setUsersProfile = (profile: ProfileType): setUsersProfileACType => ({type: 'SET_USER_PROFILE', profile})
+
+export const getUsersProfile = (userID:string)=>(dispatch: Dispatch)=> {
+    usersAPI.getProfile(userID).then(response => {
+        dispatch(setUsersProfile(response.data))
+    })
+}
