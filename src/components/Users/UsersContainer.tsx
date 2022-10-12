@@ -10,7 +10,6 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 import Users from "./Users";
 import loader from '../../assets/img/loading-13.gif';
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -104,7 +103,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 // }
 
 export default compose<React.ComponentType>(
-    withAuthRedirect,
+    // withAuthRedirect,
     connect(mapStateToProps, {
         setUsers: setUsersAC,
         setCurrentPage: setCurrentPageAC,
