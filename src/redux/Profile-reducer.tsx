@@ -1,6 +1,6 @@
-import {ActionsType, PostType} from "./store";
+import {ActionsType, PostType, SetStatusAC} from "./store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 
 const initialState = {
@@ -30,7 +30,8 @@ const initialState = {
             small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
             large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
         }
-    }
+    },
+    status: ''
 }
 
 export type initialStateType = typeof initialState
@@ -53,6 +54,12 @@ export const profileReducer = (state = initialState, action: ActionsType): initi
             return {
                 ...state,
                 newPostText: action.newText
+            }
+        }
+        case 'SET_STATUS': {
+            return {
+                ...state,
+                status: action.status
             }
         }
         case 'SET_USER_PROFILE': {
@@ -98,9 +105,24 @@ type PhotosType = {
     large: string
 }
 export const setUsersProfile = (profile: ProfileType): setUsersProfileACType => ({type: 'SET_USER_PROFILE', profile})
+export const setStatus = (status: string): SetStatusAC => ({type: 'SET_STATUS', status})
 
 export const getUsersProfile = (userID:string)=>(dispatch: Dispatch)=> {
     usersAPI.getProfile(userID).then(response => {
         dispatch(setUsersProfile(response.data))
+    })
+}
+
+export const getStatus = (userID:string)=>(dispatch: Dispatch)=> {
+    profileAPI.getStatus(userID).then(response => {
+        dispatch(setStatus(response.data))
+    })
+}
+
+export const updateStatus = (status:string)=>(dispatch: Dispatch)=> {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode === 0){
+            dispatch(setStatus(status))
+        }
     })
 }

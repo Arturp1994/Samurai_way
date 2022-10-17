@@ -4,10 +4,10 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "../../redux/Profile-reducer";
 
 
-const Profile = (props: { children?: ReactNode, profile:ProfileType }) => {
+const Profile = (props: { children?: ReactNode, profile:ProfileType, status:string, updateStatus:(d:any)=>void }) => {
     return (
         <div>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} status = {props.status} updateStatus={props.updateStatus}/>
             <MyPostsContainer/>
         </div>
 

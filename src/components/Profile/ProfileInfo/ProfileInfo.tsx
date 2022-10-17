@@ -7,6 +7,8 @@ import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoProps={
     profile:ProfileType
+    status:string
+    updateStatus: (d:any)=>void
 }
 
 const ProfileInfo = (props: ProfileInfoProps) => {
@@ -21,8 +23,10 @@ const ProfileInfo = (props: ProfileInfoProps) => {
             {/*        src='https://media.cnn.com/api/v1/images/stellar/prod/220522123743-03-liverpool-wolves-premier-league-0522.jpg?c=16x9&q=h_720,w_1280,c_fill'/>*/}
             {/*</div>*/}
             <div className={s.descriptionBlock}>
+
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={"Hello"}/>
+                {/*<img src={'https://variety.com/wp-content/uploads/2022/02/Screen-Shot-2022-05-09-at-10.04.13-AM.png'}/>*/}
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
 
         </div>

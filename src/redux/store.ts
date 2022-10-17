@@ -160,6 +160,24 @@ type UpdateNewMessagePostActionType = {
 type SendMessagePostActionType = {
     type: 'SEND_MESSAGE'
 }
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | UpdateNewMessagePostActionType | SendMessagePostActionType | followACType | onfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType | toggleIsFetchingACACType | setUsersProfileACType | SetUserDataType | toggleIsFollovingProgressACType
+export type SetStatusAC = {
+    type: 'SET_STATUS'
+    status: string
+}
+export type ActionsType = AddPostActionType |
+    ChangeNewTextActionType |
+    UpdateNewMessagePostActionType |
+    SendMessagePostActionType |
+    followACType |
+    onfollowACType |
+    setUsersACType |
+    setCurrentPageACType |
+    setTotalUsersCountACType |
+    toggleIsFetchingACACType |
+    setUsersProfileACType |
+    SetUserDataType |
+    toggleIsFollovingProgressACType |
+    SetStatusAC
+
 
 // export default store
