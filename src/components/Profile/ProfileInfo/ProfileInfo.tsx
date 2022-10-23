@@ -5,19 +5,19 @@ import loader from "../../../assets/img/loading-13.gif";
 import ProfileStatus from "./ProfileStatus";
 
 
-type ProfileInfoProps={
-    profile:ProfileType
-    status:string
-    updateStatus: (d:any)=>void
+type ProfileInfoProps = {
+    profile: ProfileType
+    status: string
+    updateStatus: (d: any) => void
 }
 
 const ProfileInfo = (props: ProfileInfoProps) => {
-    if (!props.profile){
+    if (!props.profile) {
         return <div><img width={50} height={50} src={loader}/></div>
     }
 
     return (
-        <div >
+        <div>
             {/*<div>*/}
             {/*    <img*/}
             {/*        src='https://media.cnn.com/api/v1/images/stellar/prod/220522123743-03-liverpool-wolves-premier-league-0522.jpg?c=16x9&q=h_720,w_1280,c_fill'/>*/}
