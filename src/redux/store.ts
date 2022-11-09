@@ -84,9 +84,10 @@ export type StoreType = {
 //     }
 // }
 
-export const addPostActionCreator = ():AddPostActionType =>{
+export const addPostActionCreator = (newPostText:string):AddPostActionType =>{
     return {
-        type: "ADD-POST"
+        type: "ADD-POST",
+        newPostText
     }
 }
 
@@ -97,16 +98,10 @@ export const UpdateNewPostTextActionCreator = (text: string):ChangeNewTextAction
     }
 }
 
-export const sendMessageCreator = ():SendMessagePostActionType =>{
+export const sendMessageCreator = (newMessageBody:string):SendMessagePostActionType =>{
     return {
         type: 'SEND_MESSAGE',
-    }
-}
-
-export const updateNewMessageCreator = (body: string):UpdateNewMessagePostActionType =>{
-    return {
-        type: 'UPDATE_NEW_MESSAGE_BODY',
-        body: body
+        newMessageBody
     }
 }
 
@@ -133,7 +128,6 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
-    newMessageBody: string
 
 }
 export type SidebarType = {}
@@ -147,6 +141,7 @@ export type RoteStateType = {
 
 type AddPostActionType = {
     type: 'ADD-POST'
+    newPostText: string
 }
 
 type ChangeNewTextActionType = {
@@ -159,6 +154,7 @@ type UpdateNewMessagePostActionType = {
 }
 type SendMessagePostActionType = {
     type: 'SEND_MESSAGE'
+    newMessageBody: string
 }
 export type SetStatusAC = {
     type: 'SET_STATUS'

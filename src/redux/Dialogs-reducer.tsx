@@ -13,8 +13,7 @@ const initialState = {
         {id: 3, name: 'Vika'},
         {id: 4, name: 'Egor'},
         {id: 5, name: 'Denis'},
-    ] as Array<DialogType>,
-    newMessageBody: ""
+    ] as Array<DialogType>
 }
 
 export type initialStateTypeDialogs = typeof initialState
@@ -23,16 +22,11 @@ export const dialogsReducer = (state = initialState, action: ActionsType): initi
 
 
     switch (action.type) {
-        case 'UPDATE_NEW_MESSAGE_BODY':
-            return  {
-                ...state, newMessageBody: action.body
-            };
 
         case 'SEND_MESSAGE':
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             return  {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}]
             };
         default:

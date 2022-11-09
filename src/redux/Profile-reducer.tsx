@@ -42,7 +42,7 @@ export const profileReducer = (state = initialState, action: ActionsType): initi
         case 'ADD-POST': {
             let newPost = {
                 id: new Date().getTime(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0,
             };
             return {
@@ -50,12 +50,7 @@ export const profileReducer = (state = initialState, action: ActionsType): initi
                 posts: [...state.posts, newPost]
             }
         }
-        case 'UPDATE-NEW-POST-TEXT': {
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-        }
+
         case 'SET_STATUS': {
             return {
                 ...state,
