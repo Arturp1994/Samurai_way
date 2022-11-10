@@ -3,6 +3,8 @@ import s from './MyPosts.module.css'
 import Posts from "./Post/Posts";
 import {MyPostsProrsType} from "./MyPostsContainer";
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validator/validator";
+import {Textarea} from "../../common/FormControls/FormsControl";
 
 // export type MyPostsProps = {
 //     posts: Array<{ id: number, message: string, likesCount: number }>
@@ -11,6 +13,8 @@ import {Field, reduxForm} from "redux-form";
 //     changeNewText: (newText: string) => void
 //
 // }
+
+
 
 const MyPosts = (props: MyPostsProrsType) => {
 
@@ -37,11 +41,13 @@ const MyPosts = (props: MyPostsProrsType) => {
     )
 }
 
+const maxLength10 = maxLengthCreator(10)
+
 const addNewPostForm = (props:any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name='newPostText' component='textarea'/>
+                <Field name='newPostText' component={Textarea} validate={[required, maxLength10]}/>
             </div>
             <div>
                 <button>Add post</button>
