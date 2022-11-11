@@ -10,24 +10,22 @@ import {compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
-type MapStateToPropsType={
-    dialogsPage:DialogsPageType
-    isAuth: boolean
 
-}
 type MapStateToPropsDialogType={
     dialogsPage:DialogsPageType
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType={
     sendMessage: (newMessageBody: string)=>void
 }
 
-export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
+export type DialogsPropsType = MapStateToPropsDialogType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsDialogType=>{
     return{
         dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 

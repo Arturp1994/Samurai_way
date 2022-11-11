@@ -5,7 +5,7 @@ import {required} from "../../utils/validator/validator";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
-import {AppStateType, ReduxStoreType} from "../../redux/redux-store";
+import {AppStateType} from "../../redux/redux-store";
 
 type FormDataType = {
     email:string

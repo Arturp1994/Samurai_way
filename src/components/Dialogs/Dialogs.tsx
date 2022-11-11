@@ -9,12 +9,6 @@ import {Textarea} from "../common/FormControls/FormsControl";
 import {maxLengthCreator, required} from "../../utils/validator/validator";
 
 
-// type DialogsPropsType = {
-//     updateNewMessage: (body: string)=>void
-//     sendMessage: ()=>void
-//     dialogsPage: { messages: MessageType[]; dialogs: DialogType[]; newMessageBody: string; }
-// }
-
 const Dialogs = (props: DialogsPropsType) => {
 
     const state = props.dialogsPage;
@@ -28,7 +22,8 @@ const Dialogs = (props: DialogsPropsType) => {
     }
 
 
-    if (props.isAuth === false) return <Redirect to={'/login'}/>
+    // if (!props.isAuth) return <Redirect to={'/login'}/> //не работает, в isAuth приходит undefined
+
 
     return (
         <div className={s.dialogs}>
