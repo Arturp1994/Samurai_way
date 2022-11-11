@@ -3,11 +3,14 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormControls/FormsControl";
 import {required} from "../../utils/validator/validator";
 import {connect} from "react-redux";
+import {login} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import {AppStateType, ReduxStoreType} from "../../redux/redux-store";
 
 type FormDataType = {
-    login:string
+    email:string
     password: string
-    remember: boolean
+    rememberMe: boolean
 }
 
 const LoginForm = (props: InjectedFormProps<FormDataType>) => {
@@ -15,13 +18,13 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"Email"} name={"login"} component={Input} validate={[required]}/>
+                <Field placeholder={"Email"} name={"email"} component={Input} validate={[required]}/>
             </div>
             <div>
                 <Field placeholder={"Password"} name={"password"} component={Input} type ={'password'} validate={[required]}/>
             </div>
             <div>
-                <Field type={"checkbox"} component={Input} name={"remember"} /> remember me
+                <Field type={"checkbox"} component={Input} name={"rememberMe"} /> remember me
             </div>
             <div>
                 <button>Login</button>
@@ -38,7 +41,11 @@ const LoginReduxForm = reduxForm<FormDataType>({
 const Login = (props:any) => {
 
     const onSubmit = (formData:FormDataType)=>{
-        props.login(formData.login, formData.password, formData.remember)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if (props.isAuth){
+        return <Redirect to={"/profile"}/>
     }
 
     return <div>
@@ -47,4 +54,8 @@ const Login = (props:any) => {
     </div>
 }
 
-export default connect(null, {Login})(Login)
+const mapStateToProps =(state:AppStateType)=>({
+  isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login} )(Login)

@@ -31,8 +31,7 @@ export const authReducer = (state = initialState, action: ActionsType): initialS
         case 'SET_USER_DATE':
             return {
                 ...state,
-                ...action.data,
-                isAuth:true
+                ...action.payload,
             }
 
         default:
@@ -43,13 +42,13 @@ export const authReducer = (state = initialState, action: ActionsType): initialS
 
 export type SetUserDataType = {
     type: 'SET_USER_DATE'
-    data: DataType
+    payload: DataType
 }
 
 
 export const setUserData = (id: number, email: string, login: string, isAuth: boolean): SetUserDataType => ({
     type: 'SET_USER_DATE',
-    data: {id, email, login, isAuth}
+    payload: {id, email, login, isAuth}
 })
 
 export const getAuthUserData =()=> (dispatch: Dispatch) => {
