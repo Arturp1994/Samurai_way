@@ -20,6 +20,7 @@ type DataType= {
     id: number
     email: string
     login: string
+    isAuth: boolean
 }
 
 export type initialStateTypeUsers = typeof initialState
@@ -46,16 +47,32 @@ export type SetUserDataType = {
 }
 
 
-export const setUserData = (id: number, email: string, login: string): SetUserDataType => ({
+export const setUserData = (id: number, email: string, login: string, isAuth: boolean): SetUserDataType => ({
     type: 'SET_USER_DATE',
-    data: {id, email, login}
+    data: {id, email, login, isAuth}
 })
 
 export const getAuthUserData =()=> (dispatch: Dispatch) => {
     authAPI.me().then(response => {
         if (response.data.resultCode === 0) {
             let {id, email, login}= response.data.data
-            dispatch(setUserData(id, email, login))
+            dispatch(setUserData(id, email, login, true))
+        }
+    })
+}
+
+export const login = (email: string, password: string, rememberMe: boolean)=> (dispatch: any) => {
+    authAPI.login(email, password, rememberMe ).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(getAuthUserData())
+        }
+    })
+}
+
+export const logout = ()=> (dispatch: any) => {
+    authAPI.logout().then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setUserData(1, '','', false))
         }
     })
 }
