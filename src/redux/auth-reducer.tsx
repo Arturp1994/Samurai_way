@@ -1,23 +1,24 @@
 import {ActionsType} from "./store";
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const initialState: initialStateType = {
-    id: 1,
+    id: '',
     email: '',
     login: '',
     isAuth: false
 }
 
 type initialStateType = {
-    id: number
+    id: string
     email: string
     login: string
     isAuth: boolean
 }
 
 type DataType= {
-    id: number
+    id: string
     email: string
     login: string
     isAuth: boolean
@@ -46,7 +47,7 @@ export type SetUserDataType = {
 }
 
 
-export const setUserData = (id: number, email: string, login: string, isAuth: boolean): SetUserDataType => ({
+export const setUserData = (id: string, email: string, login: string, isAuth: boolean): SetUserDataType => ({
     type: 'SET_USER_DATE',
     payload: {id, email, login, isAuth}
 })
@@ -64,6 +65,9 @@ export const login = (email: string, password: string, rememberMe: boolean)=> (d
     authAPI.login(email, password, rememberMe ).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(getAuthUserData())
+        } else {
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+            dispatch(stopSubmit("login", {email: "Common error"}))
         }
     })
 }
@@ -71,7 +75,7 @@ export const login = (email: string, password: string, rememberMe: boolean)=> (d
 export const logout = ()=> (dispatch: any) => {
     authAPI.logout().then(response => {
         if (response.data.resultCode === 0) {
-            dispatch(setUserData(1, '','', false))
+            dispatch(setUserData('', '','', false))
         }
     })
 }
